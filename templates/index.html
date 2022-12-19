@@ -18,22 +18,31 @@
 
 <body>
 
-    <div class="container-fluid bg-dark text-white">
+    <div class="container-fluid bg-dark">
         <div class="row h-100">
-            <h1 class="display-2 w-100 mt-4 text-center">
+            <h1 class="display-2 w-100 mt-4 text-center text-white">
                 Language Translator
             </h1>
-            <div id="column" class="col-md-6 text-white mx-auto">
+            <div id="column" class="col-md-6 text-black mx-auto">
 
                 <!-- check converted text -->
 
                 {% if converted_text %}
-                <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Original Text</h4>
-                    <p>{{ original_text }}</p>
+                <div style="margin: 10%;" class="card bg-success text-black">
+                    <div class="card-header">Résultat de la prédiction</div>
+                    <div class="card-body">
+                        <h4 class="text-black">Input Text</h4>
+                        <p>{{ original_text }}</p>
 
-                    <h4 class="alert-heading">Converted Text</h4>
-                    <p>{{ converted_text.replace("<PAD>","") }}</p>
+                        <h4>Output Text</h4>
+                        <p>{{ converted_text.replace("<PAD>","") }}</p>
+                        <!-- display time of execution on down on the right -->
+                    </div>
+                    <div class="test card-footer align-items-end text-black">
+                        <p class="">execution time:
+                            <span class="text-warning">{{ time_to_predict }} secondes</span>
+                        </p>
+                    </div>
                 </div>
                 {% endif %}
                 {% if error %}
@@ -42,6 +51,7 @@
                     <p>{{ error }}</p>
                 </div>
                 {% endif %}
+
 
                 <form id="form" action="/" method="POST">
 
